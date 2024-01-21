@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h4>Agregar un nuevo comentario</h4>
+            <form action="/admin/comentarios/agregar" method="post">
+                <div class="mb-3 row">
+                    <input type="text" placeholder="YYYY-MM-DD" class="form-control" name="fecha" id="fechaInput">
+                </div>
+                <div class="mb-3 row">
+                    <input type="text" class="form-control" placeholder="Titulo" name="titulo">
+                </div>
+                <div class="mb-3 row">
+                    <textarea type="text" class="form-control" placeholder="Comentario" name="comentario"></textarea>
+                </div>
+                <div class="mb-3 row">
+                    <label for="valoracion">Valoración (1-5): </label>
+                    <input type="number" id="valoracion" name="valoracion" min="1" max="5">
+                </div>
+                <button type="submit" class="btn btn-secondary">Guardar</button>
+            </form>
+            {{#if error}}
+            <p>{{message}}</p>
+            {{/if}}
+        </div>
+    </div>
+
+</div>
+
+<script src="/javascripts/validation.js"></script>

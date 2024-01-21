@@ -7,11 +7,18 @@ var logger = require('morgan');
 require('dotenv').config();
 var pool = require('./models/bd');
 var session = require('express-session');
+var hbs = require('hbs'); 
+
+// Registro del helper formatDate
+hbs.registerHelper('formatDate', function(date) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Date(date).toLocaleDateString(undefined, options);
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/admin/login');
-var adminRouter = require('./routes/admin/novedades');
+var adminRouter = require('./routes/admin/comentarios');
 
 var app = express();
 
@@ -48,7 +55,7 @@ secured = async (req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin/login', loginRouter);
-app.use('/admin/novedades', secured, adminRouter);
+app.use('/admin/comentarios', secured, adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

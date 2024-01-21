@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h4>Modificar el comentario</h4>
+            <form action="/admin/comentarios/modificar" method="post">
+            <input type="hidden" value="{{comentario.id}}" name="id">
+            <div class="mb-3 row">
+                <input type="text" value="{{formatDate comentario.fecha}}" placeholder="YYYY-MM-DD" class="form-control" name="fecha" id="fechaInput">
+            </div>
+            <div class="mb-3 row">
+                <input type="text" value="{{comentario.titulo}}" class="form-control" placeholder="Titulo" name="titulo">
+            </div>
+            <div class="mb-3 row">
+                <textarea type="text" class="form-control" placeholder="Comentario" name="comentario" rows="8">{{comentario.comentario}}</textarea>
+            </div>
+            <div class="mb-3 row">
+                <label for="valoracion">Valoración (1-5): </label>
+                <input type="number" value="{{comentario.valoracion}}" id="valoracion" name="valoracion" min="1" max="5">
+            </div>
+            <button type="submit" class="btn btn-secondary">Modificar</button>
+            </form>
+            {{#if error}}
+                <h5>{{message}}</h5>
+            {{/if}}
+        </div>
+    </div>
+
+</div>
+
+<script src="/javascripts/validation.js"></script>
